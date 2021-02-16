@@ -1,0 +1,55 @@
+"""
+Description:
+Sudoku Background
+Sudoku is a game played on a 9x9 grid. The goal of the game is to fill all cells of the grid with digits from 1 to 9, so that each column, each row, and each of the nine 3x3 sub-grids (also known as blocks) contain all of the digits from 1 to 9.
+(More info at: http://en.wikipedia.org/wiki/Sudoku)
+
+Sudoku Solution Validator
+Write a function validSolution/ValidateSolution/valid_solution() that accepts a 2D array representing a Sudoku board, and returns true if it is a valid solution, or false otherwise. The cells of the sudoku board may also contain 0's, which will represent empty cells. Boards containing one or more zeroes are considered to be invalid solutions.
+
+The board is always 9 cells by 9 cells, and every cell only contains integers from 0 to 9.
+"""
+def valid_solution(board):
+    print(board)
+    #
+    checkerh ={1:False, 2: False, 3:False , 4:False , 5:False , 6:False , 7:False, 8:False, 9:False }
+    checkerv ={1:False, 2: False, 3:False , 4:False , 5:False , 6:False , 7:False, 8:False, 9:False }
+    checkers ={1:False, 2: False, 3:False , 4:False , 5:False , 6:False , 7:False, 8:False, 9:False }
+    #horizontal with each element is a row
+    for i in range (0,9):
+        for j in range (0,9):
+            if board[i][j] in checkerh.keys():
+                checkerh[board[i][j]] =True
+            else: 
+                return False
+               # break
+        if False in checkerh.values():
+            return False
+        checkerh ={1:False, 2: False, 3:False , 4:False , 5:False , 6:False , 7:False, 8:False, 9:False }
+    #vertical check
+    for i in range (0,9):
+        for j in range (0,9):
+            if board[j][i] in checkerv.keys():
+                checkerv[board[j][i]] =True
+            else:
+                return False
+                #break
+        if False in checkerv.values():
+            return False
+        checkerv ={1:False, 2: False, 3:False , 4:False , 5:False , 6:False , 7:False, 8:False, 9:False }
+    #square check
+    for i in range(3):
+        for j in range(3):
+            checkers ={1:False, 2: False, 3:False , 4:False , 5:False , 6:False , 7:False, 8:False, 9:False }
+            for k in range(3):
+                for l in range (3):
+                    if board[ i*3+k ][ j*3+l ] in checkers.keys():
+                        checkers[board[ i*3+k ][ j*3+l ]] = True
+                    else:
+                        return False
+                    #break
+            if False in checkers.values():
+                return False
+            #checkers ={1:False, 2: False, 3:False , 4:False , 5:False , 6:False , 7:False, 8:False, 9:False }
+    return True
+    
