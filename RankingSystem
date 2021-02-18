@@ -33,6 +33,12 @@ user.inc_progress(-5) # will add 90 progress
 user.progress # => 0 # progress is now zero
 user.rank # => -7 # rank was upgraded to -7
 '''
+"""
+Inefficient ... can use index() to improve as rank skip from -1 to 1
+"""
+
+
+
 
 # TODO: create the User class
 # it must support rank, progress, and the inc_progress(rank) method
