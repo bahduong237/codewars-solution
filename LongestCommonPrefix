@@ -1,0 +1,51 @@
+'''
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+Example 1:
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+Example 2:
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+'''
+def LCP(strs):
+    pf = ''
+    count = 0
+    maxpf = len(strs[0])
+    #print(f'maxpf = {maxpf}')
+    for i in range (0, len(strs)):  # max possible prefix = min len of strs
+        maxpf = len(strs[i]) if maxpf > len(strs[i]) else maxpf
+    print(f'maxpf = {maxpf}')
+    for i in range (maxpf,0,-1):  #count down from max possible prefix
+        foundprefix = False
+        print(f'{i}')
+        for j in range (0,len(strs)):
+            print(f'strs[{j}][{i}] = {strs[j][0:i]}')
+            if strs[j][0:i] == strs[0][0:i]:   
+                foundprefix = True 
+            else:   
+                foundprefix = False
+    #break
+        if foundprefix == True:
+            pf = strs[0][0:i]
+            break
+    return pf  
+    
+   ''' 
+   Better solution to use all
+   '''
+   def longestCommonPrefix(self, strs):
+    prefix=""
+    if len(strs)==0: return prefix
+    
+    for i in xrange(len(min(strs))):
+        c=strs[0][i]
+        if all(a[i]==c for a in strs):
+            prefix+=c
+        else:
+            break
+    return prefix
+    
