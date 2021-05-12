@@ -1,0 +1,62 @@
+'''
+Given a position of a knight on the standard chessboard, find the number of different moves the knight can perform.
+
+The knight can move to a square that is two squares horizontally and one square vertically, or two squares vertically and one square horizontally away from it. The complete move therefore looks like the letter L. Check out the image below to see all valid moves for a knight piece that is placed on one of the central squares.
+
+Example
+For cell = "a1", the output should be 2.
+For cell = "c2", the output should be 6.
+
+Input/Output
+[input] string cell
+String consisting of letter+number - coordinates of the knight on an 8 × 8 chessboard in chess notation.
+[output] an integer
+'''
+
+def chess_knight(cell):
+  #coding and coding..
+    xrange = ['a','b','c','d','e','f','g','h']
+    yrange = [1,2,3,4,5,6,7,8]
+    
+    x = list(cell)[0]
+    y = list(cell)[1]
+    count = 0
+    fright = chr(ord(x)+2)
+    fleft = chr(ord(x)-2)
+    fup = int(y) +1
+    fdown = int(y)-1
+    nright = chr(ord(x)+1)
+    nleft = chr(ord(x)-1)
+    nup = int(y) +2
+    ndown = int(y)-2
+    #print(f'{fright} {fleft} {fup} {fdown} {nright} {nleft} {nup} {ndown}')
+    
+    if fright in xrange and fup in yrange:
+        print(f'{fright} {fup}')
+        count = count + 1
+    if fright in xrange and fdown in yrange:
+        count = count + 1
+    if nright in xrange and nup in yrange:
+        count = count + 1
+    if nright in xrange and ndown in yrange:
+        count = count + 1
+    
+    if fleft in xrange and fup in yrange:
+        count = count + 1
+    if fleft in xrange and fdown in yrange:
+        count = count + 1
+    if nleft in xrange and nup in yrange:
+        count = count + 1
+    if nleft in xrange and ndown in yrange:
+        count = count + 1
+    return count
+    
+    '''
+    Best Practice
+    def chess_knight(cell):
+    x, y = (ord(c) - ord(origin) for c, origin in zip(cell, 'a1'))
+    return sum(0 <= x + dx < 8 and 0 <= y + dy < 8 for dx, dy in (
+        (-2, -1), (-2, 1), (-1, -2), (-1, 2), (1, -2), (1, 2), (2, -1), (2, 1)))
+    '''
+    
+    
